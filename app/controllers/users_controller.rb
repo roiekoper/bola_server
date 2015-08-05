@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def is_verified
-    user = User.find_by_uuid({:uuid => nil}.merge(params.permit(:uuid)[:uuid]))
+    user = User.find_by_uuid(params.permit(:uuid)[:uuid])
 
     if user.present?
       session[:user_id] = user.id
