@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def verified_user
     user = User.find_by_id(params[:user_id])
     render :json => if user && user.verify_code == params[:verify_code].to_i
-                      update_attribute :verified, true
+                      user.update_attribute :verified, true
                       {:msg => 'user is verified'}
                     else
                       {:msg => 'wrong code'}
