@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :events
+  has_many :events_users
+  has_many :events, :through => :events_users
 
   validates_presence_of :phone_number, :phone_prefix, :uuid
   validates_length_of :phone_prefix, :maximum => 3

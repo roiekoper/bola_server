@@ -12,6 +12,12 @@ he:
         phone_number: 'טלפון'
         uuid: 'מספר מכשיר'
 
+      event:
+        title: 'כותרת'
+        description: 'תוכן'
+        location: 'מיקום'
+        start_date: 'תאריך התחלה'
+
   user:
     verified_success: 'הזדהות המשתמש הסתיימה בהצלחה!'
     verified_failure: 'הזדהות המשתמש נכשלה'
