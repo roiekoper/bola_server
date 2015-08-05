@@ -1,0 +1,9 @@
+he:
+#  activerecord:
+#    errors:
+#      models:
+#
+#    attributes:
+  user:
+    verified_success: 'הזדהות המשתמש הסתיימה בהצלחה!'
+    verified_failure: 'הזדהות המשתמש נכשלה'
