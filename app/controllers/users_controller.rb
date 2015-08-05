@@ -2,6 +2,11 @@ class UsersController < ApplicationController
 
   def is_verified
     user = User.find_by_uuid(params.permit(:uuid)[:uuid])
+
+    if user.present?
+      session[:user_id] = user.id
+    end
+
     general_response :success => user.present?,
                      :user_id => user.try(:id),
                      :verified => user.try(:verified)
@@ -9,7 +14,7 @@ class UsersController < ApplicationController
 
   # create temp user until verified by verify_code, send verify_code to user phone number
   def get_code
-    changed_params = {:uuid => nil,:phone_prefix => nil,:phone_number => nil}.merge(params.permit(:uuid, :phone_prefix, :phone_number))
+    changed_params = { :uuid => nil, :phone_prefix => nil, :phone_number => nil }.merge(params.permit(:uuid, :phone_prefix, :phone_number))
     user = User.find_or_create_by(changed_params)
     general_response :success => user.errors.empty?,
                      :errs => user.errors.full_messages.join(', '),
