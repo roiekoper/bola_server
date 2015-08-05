@@ -1,9 +1,20 @@
 he:
-#  activerecord:
-#    errors:
-#      models:
-#
-#    attributes:
+  activerecord:
+    errors:
+      models:
+        user:
+          verified_failed: 'קרתה בעייה בעת הזדהות המשתמש'
+
+    attributes:
+      user:
+        name: 'שם'
+        phone_prefix: 'קידמות טלפון'
+        phone_number: 'טלפון'
+        uuid: 'מספר מכשיר'
+
   user:
     verified_success: 'הזדהות המשתמש הסתיימה בהצלחה!'
     verified_failure: 'הזדהות המשתמש נכשלה'
+
+  app:
+    user_disconnected: 'לא קיים קישוריות בטלפון זה'
