@@ -14,11 +14,9 @@ class EventsController < ApplicationController
     event = Event.create(attrs.slice(:title, :description, :location).
                              merge(:start_date => DateTime.strptime("#{(Time.parse(params[:start_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time]) + 2.hours}".to_time.strftime('%H:%M:%S')}",
                                                                     '%Y-%m-%d %H:%M:%S'),
-                                   :end_date => DateTime.strptime("#{(Time.parse(params[:end_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time]) + 2.hours}".to_time.strftime('%H:%M:%S')}",
-                                                                  '%Y-%m-%d %H:%M:%S')))
+                                   :end_date => params[:end_date].present? && params[:end_time].present? ? DateTime.strptime("#{(Time.parse(params[:end_date].to_s) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time].to_s) + 2.hours}".to_time.strftime('%H:%M:%S')}",
+                                                                                                                             '%Y-%m-%d %H:%M:%S') : nil))
 
-    p event
-    p event.errors
     if event.errors.empty?
       EventsUser.create(:user_id => current_user.id,
                         :event_id => event.id,
