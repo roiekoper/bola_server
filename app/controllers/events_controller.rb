@@ -16,6 +16,7 @@ class EventsController < ApplicationController
     p '============================='
     p DateTime.strptime("#{Time.parse(params[:start_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                         '%Y-%m-%d %H:%M:%S')
+    p '+++++++++++++++'
     p DateTime.strptime("#{Time.parse(params[:end_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                         '%Y-%m-%d %H:%M:%S')
 
@@ -23,11 +24,15 @@ class EventsController < ApplicationController
     p '============================='
     p '============================='
 
-    attrs.slice(:title,:description,:location).
+    p attrs.slice(:title,:description,:location).
         merge(:start_date => DateTime.strptime("#{Time.parse(params[:start_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                                                '%Y-%m-%d %H:%M:%S'),
               :end_date => DateTime.strptime("#{Time.parse(params[:end_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                                                '%Y-%m-%d %H:%M:%S'))
+
+    p '============================='
+    p '============================='
+    p '============================='
 
 
     event = Event.create(params.permit(:title, :description,
