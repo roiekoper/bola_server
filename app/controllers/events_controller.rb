@@ -17,6 +17,8 @@ class EventsController < ApplicationController
                                    :end_date => DateTime.strptime("#{(Time.parse(params[:end_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time]) + 2.hours}".to_time.strftime('%H:%M:%S')}",
                                                                   '%Y-%m-%d %H:%M:%S')))
 
+    p event
+    p event.errors
     if event.errors.empty?
       EventsUser.create(:user_id => current_user.id,
                         :event_id => event.id,
