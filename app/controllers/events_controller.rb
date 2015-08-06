@@ -25,9 +25,9 @@ class EventsController < ApplicationController
     p '============================='
 
     p attrs.slice(:title, :description, :location).
-          merge(:start_date => DateTime.strptime("#{(Time.parse(params[:start_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time]) + 2.hours}".strftime('%H:%M:%S')}",
+          merge(:start_date => DateTime.strptime("#{(Time.parse(params[:start_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time]) + 2.hours}".to_time.strftime('%H:%M:%S')}",
                                                  '%Y-%m-%d %H:%M:%S'),
-                :end_date => DateTime.strptime("#{(Time.parse(params[:end_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time]) + 2.hours}".strftime('%H:%M:%S')}",
+                :end_date => DateTime.strptime("#{(Time.parse(params[:end_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time]) + 2.hours}".to_time.strftime('%H:%M:%S')}",
                                                '%Y-%m-%d %H:%M:%S'))
 
     p '============================='
