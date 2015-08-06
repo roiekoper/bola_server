@@ -18,9 +18,13 @@ he:
         location: 'מיקום'
         start_date: 'תאריך התחלה'
 
+      message:
+        content: 'תוכן'
+
   user:
     verified_success: 'הזדהות המשתמש הסתיימה בהצלחה!'
     verified_failure: 'הזדהות המשתמש נכשלה'
 
   app:
     user_disconnected: 'לא קיים קישוריות בטלפון זה'
+    event_failure: 'מפגש זה אינו קיים עוד'
