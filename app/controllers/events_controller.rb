@@ -11,10 +11,17 @@ class EventsController < ApplicationController
                           :end_time,:start_time,
                           :location)
 
+    p '============================='
+    p '============================='
+    p '============================='
     p DateTime.strptime("#{params[:start_date].strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                         '%Y-%m-%d %H:%M:%S')
     p DateTime.strptime("#{params[:end_date].strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                         '%Y-%m-%d %H:%M:%S')
+
+    p '============================='
+    p '============================='
+    p '============================='
 
     attrs.slice(:title,:description,:location).
         merge(:start_date => DateTime.strptime("#{params[:start_date].strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
