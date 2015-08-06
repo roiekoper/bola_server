@@ -14,7 +14,3 @@ use Rack::Cors do
              :methods => [:get, :post, :delete, :put, :options]
   end
 end
-
-require 'faye'
-faye_server = Faye::RackAdapter.new(:mount => '/faye', :timeout => 45)
-run faye_server
