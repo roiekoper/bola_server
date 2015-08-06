@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     p '============================='
     p '============================='
     p '============================='
-    p DateTime.strptime("#{T(ime.parse(params[:start_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
+    p DateTime.strptime("#{(Time.parse(params[:start_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                         '%Y-%m-%d %H:%M:%S')
     p '+++++++++++++++'
     p DateTime.strptime("#{(Time.parse(params[:end_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])} +02:00".to_time.strftime('%H:%M:%S')}",
