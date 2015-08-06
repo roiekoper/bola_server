@@ -8,26 +8,26 @@ class EventsController < ApplicationController
   def create
     attrs = params.permit(:title, :description,
                           :start_date, :end_date,
-                          :end_time,:start_time,
+                          :end_time, :start_time,
                           :location)
 
     p '============================='
     p '============================='
     p '============================='
-    p DateTime.strptime("#{Time.parse(params[:start_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
+    p DateTime.strptime("#{T(ime.parse(params[:start_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                         '%Y-%m-%d %H:%M:%S')
     p '+++++++++++++++'
-    p DateTime.strptime("#{Time.parse(params[:end_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])} +02:00".to_time.strftime('%H:%M:%S')}",
+    p DateTime.strptime("#{(Time.parse(params[:end_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])} +02:00".to_time.strftime('%H:%M:%S')}",
                         '%Y-%m-%d %H:%M:%S')
 
     p '============================='
     p '============================='
     p '============================='
 
-    p attrs.slice(:title,:description,:location).
-        merge(:start_date => DateTime.strptime("#{Time.parse(params[:start_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])}".to_time.strftime('%H:%M:%S')}",
-                                               '%Y-%m-%d %H:%M:%S'),
-              :end_date => DateTime.strptime("#{Time.parse(params[:end_date]).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])}".to_time.strftime('%H:%M:%S')}",
+    p attrs.slice(:title, :description, :location).
+          merge(:start_date => DateTime.strptime("#{(Time.parse(params[:start_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:start_time])}".to_time.strftime('%H:%M:%S')}",
+                                                 '%Y-%m-%d %H:%M:%S'),
+                :end_date => DateTime.strptime("#{(Time.parse(params[:end_date]) + 1.days).strftime('%Y-%m-%d')} #{"#{Time.parse(params[:end_time])}".to_time.strftime('%H:%M:%S')}",
                                                '%Y-%m-%d %H:%M:%S'))
 
     p '============================='
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
 
     event = Event.create(params.permit(:title, :description,
                                        :start_date, :end_date,
-                                       :end_time,:start_time,
+                                       :end_time, :start_time,
                                        :location))
 
     if event.errors.empty?
