@@ -8,8 +8,7 @@ class UsersController < ApplicationController
     end
 
     general_response :success => true,
-                     :user => user.try(:to_serialize),
-                     :verified => !!user.try(:verified)
+                     :user => user.try(:to_serialize) || {:verified => false}
   end
 
   # create temp user until verified by verify_code, send verify_code to user phone number

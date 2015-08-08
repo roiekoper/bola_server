@@ -35,7 +35,8 @@ class User < ActiveRecord::Base
         img_thumb: avatar.url(:thumb),
         img_square: avatar.url(:square),
         img_full: avatar.url(:full),
-        name: name
+        name: name,
+        verified: verified?
     }
   end
 
