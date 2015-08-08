@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def is_verified
     user = User.find_by_uuid(params.permit(:uuid)[:uuid])
