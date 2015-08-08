@@ -19,6 +19,8 @@ he:
         start_date: 'תאריך התחלה'
 
   user:
+    no_user: 'לא נמצא משתמש'
+    update_success: 'משתמש עודכן בהצלחה'
     verified_success: 'הזדהות המשתמש הסתיימה בהצלחה!'
     verified_failure: 'הזדהות המשתמש נכשלה'
 

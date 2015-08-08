@@ -1,0 +1,28 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          verified_failed: 'There is a problem with your verification'
+
+    attributes:
+      user:
+        name: 'Name'
+        phone_prefix: 'Phone prefix'
+        phone_number: 'Phone Number'
+        uuid: 'Phone UUID'
+
+      event:
+        title: 'Title'
+        description: 'Description'
+        location: 'Location'
+        start_date: 'Start Date'
+
+  user:
+    no_user: 'No user was found'
+    update_success: 'User was updated'
+    verified_success: 'User Verified'
+    verified_failure: 'Failed to verify'
+
+  app:
+    user_disconnected: 'There is no connected user'

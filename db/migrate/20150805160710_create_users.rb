@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :phone_number
       t.integer :verify_code, limit: 4
       t.boolean :verified, default: false, null: false
+      t.attachment :avatar
       t.timestamps null: false
     end
   end

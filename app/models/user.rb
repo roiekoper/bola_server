@@ -1,9 +1,15 @@
 class User < ActiveRecord::Base
   has_many :events_users
   has_many :events, :through => :events_users
+  has_attached_file :avatar, styles: {
+                               thumb: '25x25#',
+                               square: '50x50#',
+                               full: '350x350>'
+                           }
 
   validates_presence_of :phone_number, :phone_prefix, :uuid
   validates_length_of :phone_prefix, :maximum => 3
+  validates_length_of :name, :minimum => 1
 
   before_create :send_code
 
@@ -23,9 +29,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def to_serialize
+    {
+        id: id,
+        img_thumb: avatar.url(:thumb),
+        img_square: avatar.url(:square),
+        img_full: avatar.url(:full),
+        name: name
+    }
+  end
+
   def json_events
     {
-        :events => Event.joins(:users).where(:events_users => { :user_id => id }).
+        :events => Event.joins(:users).where(:events_users => {:user_id => id}).
             select(Event.column_names + %w(events_users.admin events_users.status_id)).
             map do |event|
           event.slice(*%i[ title description location]).merge(

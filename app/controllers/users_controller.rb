@@ -14,11 +14,11 @@ class UsersController < ApplicationController
 
   # create temp user until verified by verify_code, send verify_code to user phone number
   def get_code
-    changed_params = { :uuid => nil, :phone_prefix => nil, :phone_number => nil }.merge(params.permit(:uuid, :phone_prefix, :phone_number))
+    changed_params = {:uuid => nil, :phone_prefix => nil, :phone_number => nil}.merge(params.permit(:uuid, :phone_prefix, :phone_number))
     user = User.find_or_create_by(changed_params)
     general_response :success => user.errors.empty?,
                      :errs => user.errors.full_messages.join(', '),
-                     :user_id => user.id
+                     :user => {:id => user.id}
   end
 
   # check same user verify_code
@@ -28,9 +28,23 @@ class UsersController < ApplicationController
                  user.update_attribute :verified, true
                  session[:user_id] = user.id
 
-                 { :msg => t('user.verified_success') }
+                 {:msg => t('user.verified_success'), :user => user.to_serialize}
                else
-                 { :success => false, :msg => t('user.verified_failure') }
+                 {:success => false, :msg => t('user.verified_failure')}
+               end
+    general_response response
+  end
+
+  def update
+    user = User.find_by_id(params[:user_id])
+    response = if user
+                 if user.update_attributes(params.premit(:name, :avatar))
+                   {:msg => t('user.update_success'), :user => user.to_serialize}
+                 else
+                   {:errs => user.errors.full_messages}
+                 end
+               else
+                 {:errs => t('user.no_user')}
                end
     general_response response
   end
