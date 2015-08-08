@@ -6,10 +6,13 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.create(params.permit(:title,:description,:start_date,:end_date,:location))
-    EventsUser.create(:user_id => current_user.id,
-                      :event_id => event.id,
-                      :admin => true)
+    event = Event.create(params.permit(:title, :description, :start_date, :end_date, :location))
+
+    if event.errors.empty?
+      EventsUser.create(:user_id => current_user.id,
+                        :event_id => event.id,
+                        :admin => true)
+    end
 
     general_response :success => event.errors.empty?,
                      :errs => event.errors.full_messages.join(', '),

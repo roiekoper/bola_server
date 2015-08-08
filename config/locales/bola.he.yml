@@ -18,6 +18,9 @@ he:
         location: 'מיקום'
         start_date: 'תאריך התחלה'
 
+      message:
+        content: 'תוכן'
+
   user:
     no_user: 'לא נמצא משתמש'
     update_success: 'משתמש עודכן בהצלחה'
@@ -26,3 +29,4 @@ he:
 
   app:
     user_disconnected: 'לא קיים קישוריות בטלפון זה'
+    event_failure: 'מפגש זה אינו קיים עוד'
