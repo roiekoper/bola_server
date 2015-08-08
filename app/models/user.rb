@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates_presence_of :phone_number, :phone_prefix, :uuid
   validates_length_of :phone_prefix, :maximum => 3
   validates_length_of :name, :minimum => 1, :allow_blank => true
-  validates_attachment_content_type :image, :content_type => %w(image/jpg image/jpeg image/png image/gif)
+  validates_attachment_content_type :avatar, :content_type => %w(image/jpg image/jpeg image/png image/gif)
 
   before_create :send_code
 
