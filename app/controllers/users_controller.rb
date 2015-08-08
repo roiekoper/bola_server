@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def update
     user = User.find_by_id(params[:id])
     response = if user
-                 if user.update_attributes(params.premit(:name, :avatar))
+                 if user.update_attributes(params.permit(:name, :avatar))
                    {:msg => t('user.update_success'), :user => user.to_serialize}
                  else
                    {:errs => user.errors.full_messages}
