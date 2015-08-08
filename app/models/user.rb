@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
 
   def json_events
     {
-        :events => Event.joins(:users).where(:events_users => {:user_id => id}).
-            select(Event.column_names + %w(events_users.admin events_users.status_id)).
+        :events => Event.joins(:users).where(:events_users => { :user_id => id }).
+            select(Event.column_names - ['id'] + ['events.id id'] + %w(events_users.admin events_users.status_id)).
             map do |event|
           event.slice(*%i[id title description location]).merge(
               :admin => event.admin,
