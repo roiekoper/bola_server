@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
                  {:msg => t('user.verified_success'), :user => user.to_serialize}
                else
-                 {:success => false, :msg => t('user.verified_failure')}
+                 {:success => false, :errs => t('user.verified_failure')}
                end
     general_response response
   end
