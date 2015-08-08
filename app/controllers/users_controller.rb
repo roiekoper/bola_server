@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   # check same user verify_code
   def verify_code
-    user = User.find_by_id(params[:user_id])
+    user = User.find_by_id(params[:id])
     response = if user && user.verify_code == params[:verify_code].to_i
                  user.update_attribute :verified, true
                  session[:user_id] = user.id
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by_id(params[:user_id])
+    user = User.find_by_id(params[:id])
     response = if user
                  if user.update_attributes(params.premit(:name, :avatar))
                    {:msg => t('user.update_success'), :user => user.to_serialize}
