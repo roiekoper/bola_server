@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     general_response :success => true,
-                     :user_id => user.try(:id),
+                     :user => user.try(:to_serialize),
                      :verified => !!user.try(:verified)
   end
 
