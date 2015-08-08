@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :phone_number, :phone_prefix, :uuid
   validates_length_of :phone_prefix, :maximum => 3
-  validates_length_of :name, :minimum => 1
+  validates_length_of :name, :minimum => 1, :allow_blank => true
 
   before_create :send_code
 
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 
   def json_events
     {
-        :events => Event.joins(:users).where(:events_users => { :user_id => id }).
+        :events => Event.joins(:users).where(:events_users => {:user_id => id}).
             select(Event.column_names - ['id'] + ['events.id id'] + %w(events_users.admin events_users.status_id)).
             map do |event|
           event.slice(*%i[id title description location]).merge(
