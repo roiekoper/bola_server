@@ -3,6 +3,11 @@ class Event < ActiveRecord::Base
   has_many :users, :through => :events_users
   has_many :messages
 
+  has_attached_file :avatar, styles: {
+                               square: '50x50#',
+                               full: '350x350>'
+                           }
+
   validates_presence_of :title, :description, :start_date, :location
 
   def create_message(message_opts)

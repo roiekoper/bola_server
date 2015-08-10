@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :start_date
       t.datetime :end_date
       t.string :location
+      t.attachment :avatar
       t.timestamps null: false
     end
   end
