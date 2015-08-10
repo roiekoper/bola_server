@@ -52,6 +52,9 @@ class User < ActiveRecord::Base
               :status => List.find_by_id(event.status_id),
               :start_date => event.start_date.try(:long_format),
               :end_date => event.end_date.try(:long_format),
+              avatar: event.avatar.url(:original),
+              img_square: event.avatar.url(:square),
+              img_full: event.avatar.url(:full),
               :created_at => event.created_at.try(:long_format))
         end
     }
