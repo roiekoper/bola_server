@@ -18,6 +18,9 @@ en:
         location: 'Location'
         start_date: 'Start Date'
 
+      message:
+        content: 'Content'
+
   user:
     no_user: 'No user was found'
     update_success: 'User was updated'
@@ -26,3 +29,4 @@ en:
 
   app:
     user_disconnected: 'There is no connected user'
+    event_failure: 'This event no longer exists'

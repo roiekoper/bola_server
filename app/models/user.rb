@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   def to_serialize
     {
         id: id,
+        avatar: avatar.url(:original),
         img_thumb: avatar.url(:thumb),
         img_square: avatar.url(:square),
         img_full: avatar.url(:full),
