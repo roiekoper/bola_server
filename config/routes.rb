@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post 'users/update'
     get 'events', to: 'events#index'
     post 'events/create'
+    get 'events/update_status'
     get 'messages/create'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -29,4 +29,18 @@ class EventsController < ApplicationController
                      :errs => event.errors.full_messages.join(', '),
                      :event_id => event.id
   end
+
+  def update_status
+    event = Event.find_by_id(params[:id])
+    response = if event
+                 if event.update_status(params.permit(:status))
+                   {:msg => t('user.update_success')}
+                 else
+                   {:errs => event.errors.full_messages}
+                 end
+               else
+                 {:errs => t('event.no_event')}
+               end
+    general_response response
+  end
 end

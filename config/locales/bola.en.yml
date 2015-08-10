@@ -27,6 +27,9 @@ en:
     verified_success: 'User Verified'
     verified_failure: 'Failed to verify'
 
+  event:
+    no_event: 'No event was found'
+
   app:
     user_disconnected: 'There is no connected user'
     event_failure: 'This event no longer exists'

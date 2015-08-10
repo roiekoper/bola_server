@@ -27,6 +27,9 @@ he:
     verified_success: 'הזדהות המשתמש הסתיימה בהצלחה!'
     verified_failure: 'הזדהות המשתמש נכשלה'
 
+  event:
+    no_event: 'לא נמצא אירוע'
+
   app:
     user_disconnected: 'לא קיים קישוריות בטלפון זה'
     event_failure: 'מפגש זה אינו קיים עוד'
