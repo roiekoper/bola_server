@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     get 'users/is_verified'
     post 'users/update'
     get 'events', to: 'events#index'
-    get 'events/create'
+    post 'events/create'
     get 'messages/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
