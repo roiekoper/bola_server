@@ -29,6 +29,7 @@ he:
 
   event:
     no_event: 'לא נמצא אירוע'
+    update_success: 'אירוע עודכן בהצלחה'
 
   app:
     user_disconnected: 'לא קיים קישוריות בטלפון זה'

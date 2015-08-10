@@ -31,12 +31,12 @@ class EventsController < ApplicationController
   end
 
   def update_status
-    event = Event.find_by_id(params[:id])
-    response = if event
-                 if event.update_status(params.permit(:status)[:status])
-                   {:msg => t('user.update_success')}
+    events_user = EventsUser.where(:event_id => params[:id], :user_id => current_user.id).first
+    response = if events_user
+                 if events_user.update_status(params.permit(:status)[:status])
+                   {:msg => t('event.update_success')}
                  else
-                   {:errs => event.errors.full_messages}
+                   {:errs => events_user.errors.full_messages}
                  end
                else
                  {:errs => t('event.no_event')}

@@ -29,6 +29,7 @@ en:
 
   event:
     no_event: 'No event was found'
+    update_success: 'Event was updated'
 
   app:
     user_disconnected: 'There is no connected user'
