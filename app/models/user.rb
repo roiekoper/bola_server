@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
             map do |event|
           event.slice(*%i[id title description location]).merge(
               :admin => event.admin,
-              :status => List.find_by_id(event.status_id),
+              :status => List.find_by_id(event.status_id).view,
               :start_date => event.start_date.try(:long_format),
               :end_date => event.end_date.try(:long_format),
               avatar: event.avatar.url(:original),
