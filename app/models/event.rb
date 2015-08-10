@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
                            }
 
   validates_presence_of :title, :description, :start_date, :location
+  validates_attachment_content_type :avatar, :content_type => %w(image/jpg image/jpeg image/png image/gif)
 
   def create_message(message_opts)
     message = messages.create(message_opts)
