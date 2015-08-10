@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     response = (current_user ? current_user.json_events : {:msg => t('app.user_disconnected')}).
         merge(:success => current_user.present?)
