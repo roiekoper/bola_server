@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     get 'users/get_code'
     get 'users/verify_code'
-    get 'users/is_verified'
+    post 'users/is_verified'
     post 'users/update'
     get 'events', to: 'events#index'
     post 'events/create'
