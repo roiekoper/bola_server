@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     event = Event.find_by_id(params.permit(:event_id)[:event_id])
 
