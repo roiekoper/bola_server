@@ -20,7 +20,7 @@ class EventsController < ApplicationController
                                                                                                                              '%Y-%m-%d %H:%M:%S') : nil))
 
     if event.errors.empty?
-      ([current_user.id] + attrs[:invites]).each do |user_id|
+      ([current_user.id] + attrs[:invites].split(',')).each do |user_id|
         EventsUser.create(:user_id => user_id,
                           :event_id => event.id,
                           :admin => current_user.id == user_id)
