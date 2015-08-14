@@ -48,4 +48,17 @@ class UsersController < ApplicationController
                end
     general_response response
   end
+
+  def verified_phones
+    contacts = params[:contacts].inject({}) do |h, contact|
+      contact_var = {avatar: contact[:photos][0][:value], name: contact.name.formatted}
+      h.merge(contact[:phoneNumbers].inject({}) do |ph, phone|
+                phone_number = phone[:value].to_s.last(9).to_i
+                ph.merge phone_number => contact_var.merge(phone: phone_number)
+              end)
+    end
+    general_response(contacts: User.select(:id, :phone_number).where(:phone_number => contacts.keys).map do |user|
+                       contacts[user.phone_number].merge id: user.id
+                     end)
+  end
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     post 'users/verify_code'
     post 'users/is_verified'
     post 'users/update'
+    post 'users/verified_phones'
     post 'events', to: 'events#index'
     post 'events/create'
     post 'events/update_status'
