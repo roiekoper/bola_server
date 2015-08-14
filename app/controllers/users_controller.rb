@@ -51,9 +51,9 @@ class UsersController < ApplicationController
 
   def verified_phones
     contacts = params[:contacts].inject({}) do |h, phone_number|
-      h.merge phone_number.to_s.last(9).to_i => phone_number
+      h.merge phone_number.to_s[-9..-1].try(:to_i) => phone_number
     end
-    general_response(contacts: User.select(:id, :phone_number).where(:phone_number => contacts.keys).inject({}) do |h, user|
+    general_response(contacts: User.select(:id, :phone_number).where(:phone_number => contacts.keys.compact).inject({}) do |h, user|
                        h.merge contacts[user.phone_number] => user.id
                      end)
   end

@@ -43,20 +43,6 @@ class User < ActiveRecord::Base
   end
 
   def json_events
-    {
-        :events => Event.joins(:users).where(:events_users => {:user_id => id}).
-            select(Event.column_names - ['id'] + ['events.id id'] + %w(events_users.admin events_users.status_id)).
-            map do |event|
-          event.slice(*%i[id title description location]).merge(
-              :admin => event.admin,
-              :status => List.find_by_id(event.status_id).try(:view),
-              :start_date => event.start_date.try(:long_format),
-              :end_date => event.end_date.try(:long_format),
-              avatar: event.avatar.url(:original),
-              img_square: event.avatar.url(:square),
-              img_full: event.avatar.url(:full),
-              :created_at => event.created_at.try(:long_format))
-        end
-    }
+    {:events => Event.to_serialize(self)}
   end
 end

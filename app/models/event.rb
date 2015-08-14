@@ -11,6 +11,26 @@ class Event < ActiveRecord::Base
   validates_presence_of :title, :description, :start_date, :location
   validates_attachment_content_type :avatar, :content_type => %w(image/jpg image/jpeg image/png image/gif)
 
+  def to_serialize(user)
+    Event.where(id: id).to_serialize(user).first
+  end
+
+  def self.to_serialize(user)
+    joins(:users).where(:events_users => {:user_id => user.id}).
+        select(column_names - ['id'] + ['events.id id'] + %w(events_users.admin events_users.status_id)).
+        map do |event|
+      event.slice(*%i[id title description location]).merge(
+          :admin => event.admin,
+          :status => List.find_by_id(event.status_id).try(:view),
+          :start_date => event.start_date.try(:long_format),
+          :end_date => event.end_date.try(:long_format),
+          avatar: event.avatar.url(:original),
+          img_square: event.avatar.url(:square),
+          img_full: event.avatar.url(:full),
+          :created_at => event.created_at.try(:long_format))
+    end
+  end
+
   def create_message(message_opts)
     message = messages.create(message_opts)
 
