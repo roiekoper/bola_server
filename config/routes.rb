@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-    get 'users/get_code'
-    get 'users/verify_code'
+    post 'users/get_code'
+    post 'users/verify_code'
     post 'users/is_verified'
     post 'users/update'
-    get 'events', to: 'events#index'
+    post 'events', to: 'events#index'
     post 'events/create'
-    get 'events/update_status'
-    get 'messages/create'
+    post 'events/update_status'
+    post 'messages/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
