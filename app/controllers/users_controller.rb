@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # create temp user until verified by verify_code, send verify_code to user phone number
   def get_code
     changed_params = {:uuid => nil, :phone_prefix => nil, :phone_number => nil}.merge(params.permit(:uuid, :phone_prefix, :phone_number))
+    changed_params[:phone_prefix] = changed_params[:phone_prefix].to_i
     user = User.find_or_create_by(changed_params)
     general_response :success => user.errors.empty?,
                      :errs => user.errors.full_messages.join(', '),
