@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   def verified_phones
     contacts = params[:contacts].inject({}) do |h, phone_number|
-      h.merge phone_number.to_s[-9..-1].try(:to_i) => phone_number
+      h.merge phone_number.to_s.gsub(/\D/, '')[-9..-1].try(:to_i) => phone_number
     end
     general_response(contacts: User.select(:id, :phone_number).
                          where('id != ?', current_user.id).
