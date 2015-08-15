@@ -61,9 +61,15 @@ ActiveRecord::Schema.define(version: 20150805232135) do
     t.integer  "phone_prefix"
     t.integer  "phone_number"
     t.integer  "verify_code"
-    t.boolean  "verified",     default: false, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "verified",            default: false, null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
+
+  add_index "users", ["phone_number"], name: "index_users_on_phone_number", using: :btree
 
 end

@@ -10,5 +10,7 @@ class CreateUsers < ActiveRecord::Migration
       t.attachment :avatar
       t.timestamps null: false
     end
+
+    add_index :users, :phone_number
   end
 end
