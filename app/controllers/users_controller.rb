@@ -60,4 +60,8 @@ class UsersController < ApplicationController
                        h.merge contacts[user.phone_number] => user.id
                      end)
   end
+
+  def push_token
+    Rails.info params
+  end
 end
