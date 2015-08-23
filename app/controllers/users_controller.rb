@@ -62,6 +62,6 @@ class UsersController < ApplicationController
   end
 
   def push_token
-    Rails.info params
+    Rails.logger.info params
   end
 end
