@@ -1,9 +1,5 @@
 module Ionic
   class PushService
-    ENV = {
-        'IONIC_APP_SECRET_KEY' => '2e9620e1664932407499dbab350456f3a5e7620440bffb09',
-        'IONIC_APP_ID' => '794d9a04'
-    }
     include HTTParty
     base_uri 'https://push.ionic.io'
 

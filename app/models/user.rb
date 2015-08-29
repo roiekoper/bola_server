@@ -18,13 +18,8 @@ class User < ActiveRecord::Base
   def send_code
     self.verify_code = rand(1000..9999)
 
-    @client = Twilio::REST::Client.new(ACCOUNT_SID, AUTH_TOKEN)
     begin
-      @client.account.messages.create(
-          :from => FROM_NUMBER,
-          :to => "+#{phone_prefix}#{phone_number}",
-          :body => "Your code: #{verify_code}"
-      )
+      BolaTwillio.new.msg("+#{phone_prefix}#{phone_number}", "Your code: #{verify_code}")
     rescue Exception => e
       errors.add :base, :verified_failed
     end
