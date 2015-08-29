@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :verify_code, limit: 4
       t.boolean :verified, default: false, null: false
       t.attachment :avatar
+      t.string :user_token
       t.timestamps null: false
     end
 

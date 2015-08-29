@@ -62,6 +62,6 @@ class UsersController < ApplicationController
   end
 
   def push_token
-    Rails.logger.info params
+    User.find(params[:id]).update_attribute :user_token, params[:user_id]
   end
 end

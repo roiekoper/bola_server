@@ -45,6 +45,7 @@ class Event < ActiveRecord::Base
                                                    :writer_name => writer.try(:name).to_s,
                                                    :writer_status => List.find_by_id(writer_event.try(:status_id)).try(:view).to_s
                                                ))
+      Ionic::PushService.new.notify(message.event.users.pluck(:user_token), {alert: message.content})
       {}
     else
       {
